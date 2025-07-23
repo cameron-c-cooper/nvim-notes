@@ -129,6 +129,18 @@ return {
     s({trig="tii", dscr="expands text to textit"}, {
 	unpack(fmta("\\textit{<>}", {d(1, get_visual)}))
     }),
+    s({trig=";quote", snippetType="autosnippet"}, {
+	unpack(fmta(
+	    [[
+		\begin{quote}
+		    <>
+		\end{quote}
+	    ]],
+	    {
+		i(1)
+	    }
+	))
+    }),
     s({trig = '([^%a])h1', regTrig = true, wordTrig = false, dscr='top-level section', snippetType = 'autosnippet', condition = line_begin and not in_mathzone}, {
 	unpack(fmta(
 	    [[\section{<>}]],
