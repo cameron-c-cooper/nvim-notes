@@ -50,7 +50,7 @@ return {
 	    { delimiters = "<>"}
 	))
     }),
-    s({trig = "([^%a])mm", wordTrig = false, regTrig = true, snippetType = 'autosnippet'}, {
+    s({trig = "([^%a])ile", wordTrig = false, regTrig = true, snippetType = 'autosnippet'}, {
 	unpack(fmta(
 	    "<>$<>$",
 	    {
@@ -59,11 +59,28 @@ return {
 	    }
 	))
     }),
-    s({trig = "^genmathnote", wordTrig = false, regTrig = true}, {
+    s({trig = "([^%a])nle", wordTrig = false, regTrig = true, snippetType = 'autosnippet'}, {
+	unpack(fmt(
+	    [[
+		\begin{gather*}
+		    <>
+		\end{gather*}
+	    ]],
+	    {
+		i(1)
+	    },
+	    { delimiters = "<>" }
+	))
+    }),
+    s({trig = "^genmathnote", wordTrig = false, regTrig = true, snippetType = 'autosnippet'}, {
 	unpack(fmta(
 	    [[
 		<>\documentclass{article}
 		\usepackage{graphicx}
+		\usepackage{amsmath}
+		\usepackage{derivative}
+		\usepackage{breqn}
+		\newcommand{\diff}{\ensuremath{\operatorname{d}\!}}
 		\title{<>}
 		\author{Cameron C Cooper}
 		\date{<>}

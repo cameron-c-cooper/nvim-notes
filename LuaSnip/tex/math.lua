@@ -34,7 +34,16 @@ return {
 	    }
 	))
     }),
-    s({trig = '([^%a])ee', regTrig = true, wordTrig = false, snippetType = 'autosnippet', condition = in_mathzone}, {
+    s({trig = '([%a%)%]%}])subs', regTrig = true, wordTrig = false, snippetType = 'autosnippet'}, {
+	unpack(fmta(
+	    "<>_{<>}",
+	    {
+		f( function(_, snip) return snip.captures[1] end ),
+		i(1)
+	    }
+	))
+    }),
+    s({trig = 'ee', regTrig = true, wordTrig = false, snippetType = 'autosnippet', condition = in_mathzone}, {
 	unpack(fmta(
 	    [[<>e^{<>}]],
 	    {
@@ -43,4 +52,63 @@ return {
 	    }
 	))
     }),
+    s({trig = 'int', regTrig = true, wordTrig = false, snippetType = 'autosnippet', condition = in_mathzone}, {
+	unpack(fmta(
+	    [[\int_{<>}^{<>} <> \,<>]],
+	    {
+		i(1),
+		i(2),
+		i(3),
+		i(4)
+	    }
+	))
+    }),
+    s({trig = 'sum', regTrig = true, wordTrig = false, snippetType = 'autosnippet', condition = in_mathzone}, {
+	unpack(fmta(
+	    [[\sum_{<>}^{<>} <>]],
+	    {
+		i(1),
+		i(2),
+		i(3),
+	    }
+	))
+    }),
+    s({trig = 'vec', regTrig = true, wordTrig = false, snippetType = 'autosnippet', condition = in_mathzone}, {
+	unpack(fmta(
+	    [[\langle <> \rangle]],
+	    {
+		i(1)
+	    }
+	))
+    }),
+    s({trig = 'pdv',snippetType = 'autosnippet', condition = in_mathzone}, {
+	unpack(fmta(
+	    [[\pdv{<>}{<>}]],
+	    {
+		i(1),
+		i(2)
+	    }
+	))
+    }),
+    s({trig = 'odv ', snippetType = 'autosnippet', condition = in_mathzone}, {
+	unpack(fmta(
+	    [[\odv{}{<>}[<>] ]],
+	    {
+		i(1),
+		i(2)
+	    }
+	))
+    }),
+    s({trig = 'odv', condition = in_mathzone}, {
+	unpack(fmta(
+	    [[\odv{<>}{<>}]],
+	    {
+		i(1),
+		i(2)
+	    }
+	))
+    }),
+    s({trig = 'df', snippetType = 'autosnippet', condition = in_mathzone},
+	{t('\\diff')}
+    )
 }
